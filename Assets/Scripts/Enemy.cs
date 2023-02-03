@@ -10,14 +10,14 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       enemyRb = getComponent<Rigidbody>();
-       player = GameObject.Find("Playe");
+       enemyRb = GetComponent<Rigidbody>();
+       player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+      Vector3 lookDirection = (player.transform.position - transform.position).normalized;
       enemyRb.AddForce(lookDirection * speed);  
-      vector3 lookDirection = (player.transform.position - transform.position).normalized;
     }
 }
