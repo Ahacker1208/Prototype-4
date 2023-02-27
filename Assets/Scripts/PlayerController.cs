@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
        powerupIndicator.transform.position = transform.position
     + new Vector3(0,-0.5f, 0);
     }
-    private void onTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PowerUp"))
         {
@@ -34,13 +34,14 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.gameObject.SetActive(true);
         }
-        IEnumerator PowerupCountdownRoutine() 
+       
+    } 
+    IEnumerator PowerupCountdownRoutine() 
         {
-            powerupIndicator.gameObject.SetActive(false);
             yield return new WaitForSeconds(7);
             hasPowerup = false;
+            powerupIndicator.gameObject.SetActive(false);
         }
-    }
     private void OnCollisionEnter(Collision collision) 
     {
         if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
